@@ -31,11 +31,10 @@ public class Main {
 
         lib.borrowBook("1984");
 
-        int found = lib.findBook("1984");
-        if (found != -1) {
-            lib.books[found].returnBook();
+        Book found = lib.findBook("1984");
+        if (found != null) {
+            found.returnBook();
         }
-
         System.out.println("Available books count at end: " + lib.countAvailableBooks());
     }
 }

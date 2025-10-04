@@ -14,11 +14,19 @@ public class Book {
     }
 
     public void borrow() {
+        if (this.isBorrowed) {
+            System.out.println("This book is already borrowed");
+            return;
+        }
         this.isBorrowed = true;
         System.out.println("You successfully borrowed the book");
     }
 
     public void returnBook(){
+        if (!this.isBorrowed) {
+            System.out.println("This book is already free");
+            return;
+        }
         this.isBorrowed=false;
         System.out.println("Book got returned");
     }
@@ -34,7 +42,7 @@ public class Book {
         return this.title;
     }
 
-    public boolean getBorrowed(){
+    public boolean getIsBorrowed(){
         return this.isBorrowed;
     }
 
