@@ -4,8 +4,14 @@ public class Task {
     Priority priority;
 
     Task(String title, String description, Priority priority) {
-        if (title == null || title.equals(" ") ||description==null||priority==null) {
-            throw new IllegalArgumentException("Title, Description and Priority can't be null or empty");
+        if (title == null || title.isEmpty()) {
+            throw new IllegalArgumentException("Title can't be null or empty");
+        }
+        if (description == null) {
+            throw new IllegalArgumentException("Description can't be null or empty");
+        }
+        if (priority == null) {
+            throw new IllegalArgumentException("Priority can't be null or empty");
         }
         this.title=title;
         this.description=description;
@@ -19,6 +25,11 @@ public class Task {
     }
 
 
+    public String getTitle() {
+        return this.title;
+    }
 
-
+    public Priority getPriority() {
+        return this.priority;
+    }
 }

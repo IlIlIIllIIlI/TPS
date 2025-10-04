@@ -5,7 +5,7 @@ public class TaskManager {
     ArrayList<Task> tasks;
 
     TaskManager(){
-
+        this.tasks = new ArrayList<>();
     }
 
     TaskManager(ArrayList<Task> tasks){
@@ -20,16 +20,6 @@ public class TaskManager {
         this.tasks.remove(task);
     }
 
-    public void displayTask(Task task) {
-        for (Task taski : this.tasks){
-            if (Objects.equals(taski.title, task.title)){
-                taski.display();
-                return;
-            }
-        }
-        throw new IllegalArgumentException("The task must be in the manager");
-    }
-
     public void displayAll() {
         if (tasks.isEmpty()){
             throw new ArrayStoreException("Manager is empty");
@@ -41,7 +31,7 @@ public class TaskManager {
 
     public void filterPriority(Priority priority){
         for (Task task : this.tasks){
-            if (Objects.equals(task.priority, priority)){
+            if (Objects.equals(task.getPriority(), priority)){
                 task.display();
             }
         }
@@ -49,7 +39,8 @@ public class TaskManager {
 
     public void filterTitle(String title){
         for (Task task : this.tasks){
-            if (Objects.equals(task.title, title)){
+            if (Objects.equals(task.getTitle
+(), title)){
                 task.display();
             }
         }
@@ -59,7 +50,7 @@ public class TaskManager {
     public int countPriority(Priority priority){
         int count=0;
         for (Task task : this.tasks){
-            if (Objects.equals(task.priority, priority)){
+            if (Objects.equals(task.getPriority(), priority)){
                 count++;
             }
         }

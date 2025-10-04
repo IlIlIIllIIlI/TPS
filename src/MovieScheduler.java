@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +13,11 @@ public class MovieScheduler {
 
     public void addMovie(String title, Slot slot) {
 
-        if (title == null || slot == null || title.isEmpty()) {
-            throw new IllegalArgumentException("Movie can't be null or empty");
+        if (title == null || title.isEmpty()) {
+            throw new IllegalArgumentException("Title can't be null or empty");
+        }
+        if (slot == null) {
+            throw new IllegalArgumentException("slot can't be null");
         }
         for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
             if (movie.getKey().equalsIgnoreCase(title)){
@@ -27,70 +31,54 @@ public class MovieScheduler {
     }
 
     public void removeMovie(String title) {
-        try {
-            if (title == null|| title.isEmpty()) {
-                throw new IllegalArgumentException();
-            }
-            for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
-                if (movie.getKey().equalsIgnoreCase(title)){
+
+        if (title == null|| title.isEmpty()) {
+            throw new IllegalArgumentException("Movie does not exist");
+        }
+        for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
+            if (movie.getKey().equalsIgnoreCase(title)){
                     this.movies.remove(title);
                     return;
-                }
             }
-
-            throw new IllegalArgumentException();
-        } catch (Exception e) {
-            System.out.println("Movie does not exist");
         }
+
+        throw new IllegalArgumentException();
     }
 
     public Slot getMovieSlot(String title) {
-        try {
-            if (title == null|| title.isEmpty()) {
-                throw new IllegalArgumentException();
-            }
-            for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
-                if (movie.getKey().equalsIgnoreCase(title)){
-                    return movie.getValue();
-                }
-            }
-            throw new IllegalArgumentException();
-        } catch (Exception e) {
-            System.out.println("Movie does not exist");
+
+        if (title == null|| title.isEmpty()) {
+            throw new IllegalArgumentException("Movie does not exist");
         }
-        return null;
+        for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
+            if (movie.getKey().equalsIgnoreCase(title)){
+                return movie.getValue();
+            }
+        }
+        throw new IllegalArgumentException("Movie does not exist");
+
     }
 
     public void updateMovieSlot(String title, Slot newSlot) {
-        try {
-            if (title == null|| title.isEmpty()|| newSlot == null) {
-                throw new IllegalArgumentException();
-            }
-            for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
-                if (Objects.equals(movie.getKey(), title)){
-                    movie.setValue(newSlot);
-                    return;
-                }
-            }
-
-            throw new IllegalArgumentException();
-        } catch (Exception e) {
-            System.out.println("Movie does not exist");
+        if (title == null|| title.isEmpty()|| newSlot == null) {
+            throw new IllegalArgumentException("Movie does not exist");
         }
+        for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
+            if (Objects.equals(movie.getKey(), title)){
+                movie.setValue(newSlot);
+                return;
+            }
+        }
+        throw new IllegalArgumentException();
     }
 
     public void display(){
-        try {
-            if (movies.isEmpty()){
-                throw new IndexOutOfBoundsException();
-            }
-            for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
-                System.out.println("Movie : "+movie.getKey());
-                movie.getValue().display();
-            }
-
-        } catch (IndexOutOfBoundsException e) {
+        if (movies.isEmpty()){
             System.out.println("There are no movies currently planned");
+        }
+        for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
+            System.out.println("Movie : "+movie.getKey());
+            movie.getValue().display();
         }
     }
 
@@ -106,14 +94,14 @@ public class MovieScheduler {
         for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
             boolean exists = false;
             for (Map.Entry<String, Integer> room : moviesRoom.entrySet()){
-                if (Objects.equals(room.getKey(), movie.getValue().room)){
+                if (Objects.equals(room.getKey(), movie.getValue().getRoom())){
                     exists = true;
                     room.setValue(room.getValue() + 1);
                 }
             }
 
             if (!exists) {
-                moviesRoom.put(movie.getValue().room,1);
+                moviesRoom.put(movie.getValue().getRoom(),1);
             }
         }
 
@@ -122,8 +110,7 @@ public class MovieScheduler {
         }
     }
 
-    private boolean importMovie(String[] movieData){
-        try {
+    private boolean importMovie(String[] movieData) throws ParseException {
             if (movieData.length !=4){
                 throw new IllegalArgumentException("Movie must have exactly a title, start time, duration and room");
             }
@@ -138,32 +125,26 @@ public class MovieScheduler {
             Slot slot = new Slot(startTime,duration,room);
 
             this.addMovie(title,slot);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Couldn't import movie : "+e.getMessage());
-            return false;
-        }
 
         return true;
     }
 
     public void importMovieSchedule(String[][] movies){
         HashMap<String, Slot> backup = new HashMap<>(this.movies);
-        int counter =1;
-        for (String[] movie : movies){
-            if (importMovie(movie)){
-                System.out.println("Movie "+counter+" imported successfully");
-                counter++;
-            }else{
-                this.movies.clear();
-                this.movies.putAll(backup);
-                System.out.println("Process cancelled because movie "+counter+" couldn't be imported correctly");
-                return;
+        try {
+            for (String[] movie : movies) {
+                this.importMovie(movie);
             }
+
+        } catch (Exception e) {
+            this.movies.clear();
+            this.movies.putAll(backup);
+            throw new RuntimeException(e);
         }
     }
 
     public boolean hasMovieConflicts() {
-        Slot[] values = movies.values().toArray(new Slot[movies.size()]);
+        Slot[] values = this.movies.values().toArray(new Slot[movies.size()]);
         for (int i = 0; i < values.length ; i++) {
             for (int j = i+1; j < values.length ; j++) {
                 if (values[i].hasTimeConflict(values[j])) {
@@ -177,14 +158,14 @@ public class MovieScheduler {
     public ArrayList<Slot> getMoviesByRoom(String room){
         ArrayList<Slot> moviesRoom = new ArrayList<>();
         for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
-            if (movie.getValue().room.equalsIgnoreCase(room)){
+            if (movie.getValue().getRoom().equalsIgnoreCase(room)){
                 moviesRoom.add(movie.getValue());
             }
         }
         return moviesRoom;
     }
 
-    public boolean isRoomAvailable(String room, String startTime, double duration) {
+    public boolean isRoomAvailable(String room, String startTime, double duration) throws ParseException {
         Slot movietime = new Slot(startTime,duration,room);
         for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
             if (movietime.hasTimeConflict(movie.getValue())){
