@@ -1,14 +1,15 @@
+import java.util.ArrayList;
 import java.util.Objects;
 public class Podcast extends Media{
     protected String host;
     protected int episodeNumber;
-    protected String mail;
-
+    protected ArrayList<String> mail;
 
     Podcast(String title, int year, double duration,String host, int episodeNumber){
         super(title,year,duration);
         this.host=host;
         this.episodeNumber=episodeNumber;
+        this.mail= new ArrayList<>();
     }
     @Override
     public void play(){
@@ -31,16 +32,14 @@ public class Podcast extends Media{
     }
     @Override
     public void displayInfo(){
-        System.out.println("Title : "+this.title);
-        System.out.println("Year : "+this.year);
-        System.out.println("Duration : "+this.duration+"min");
+        super.displayInfo();
         System.out.println("This Media is a "+this.getMediaType());
         System.out.println("Size : "+this.getFileSize()+"MB");
 
     }
 
     public void subscribe(String mail){
-        this.mail=mail;
+        this.mail.add(mail);
         System.out.println("You are subscribed !");
     }
 

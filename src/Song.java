@@ -30,9 +30,7 @@ public class Song extends Media{
 
     @Override
     public void displayInfo(){
-        System.out.println("Title : "+this.title);
-        System.out.println("Year : "+this.year);
-        System.out.println("Duration : "+this.duration+"min");
+        super.displayInfo();
         System.out.println("This Media is a "+this.getMediaType());
         System.out.println("Artist : "+this.artist);
         System.out.println("Album : "+this.album);

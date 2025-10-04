@@ -32,9 +32,7 @@ public class Movie extends Media{
     }
     @Override
     public void displayInfo(){
-        System.out.println("Title : "+this.title);
-        System.out.println("Year : "+this.year);
-        System.out.println("Duration : "+this.duration+"min");
+        super.displayInfo();
         System.out.println("This Media is a "+this.getMediaType());
         System.out.println("Genre : "+this.genre);
         this.showCredit();
