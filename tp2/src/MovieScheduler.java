@@ -42,7 +42,7 @@ public class MovieScheduler {
             }
         }
 
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("Movie does not exist");
     }
 
     public Slot getMovieSlot(String title) {
@@ -69,7 +69,7 @@ public class MovieScheduler {
                 return;
             }
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("Movie does not exist");
     }
 
     public void display(){
@@ -86,7 +86,7 @@ public class MovieScheduler {
         System.out.println("There are "+movies.size()+"movies ");
         double totalDuration = 0;
         for (Map.Entry<String, Slot> movie : this.movies.entrySet()){
-            totalDuration += movie.getValue().duration;
+            totalDuration += movie.getValue().getDuration();
         }
         System.out.println("Total duration : "+totalDuration);
 
