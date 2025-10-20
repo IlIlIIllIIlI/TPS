@@ -149,7 +149,7 @@ public class BankAccount {
      * @return true si le retrait est possible
      */
     public boolean canWithdraw(double amount) {
-        return amount<=this.getMaxAvailableBalance() && this.isActive&&amount>0;
+        return amount<=this.getMaxAvailableBalance() && this.isActive && amount>0;
     }
     
     // === GETTERS ===

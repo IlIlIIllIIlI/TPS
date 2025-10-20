@@ -25,13 +25,11 @@ public class StudentTest {
     void shouldRejectNullStudentId() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student(null, "Bob", "GAH", "po@kdak.com", 16)
+                () -> new Student(null, "Bob", "GAH", "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("Student ID cannot be null or empty", exception.getMessage());
@@ -41,13 +39,11 @@ public class StudentTest {
     void shouldRejectEmptyStudentId() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student(" ", "Bob", "GAH", "po@kdak.com", 16)
+                () -> new Student(" ", "Bob", "GAH", "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("Student ID cannot be null or empty", exception.getMessage());
@@ -57,13 +53,11 @@ public class StudentTest {
     void shouldRejectStudentIdWithoutSTU() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("UTS001", "Bob", "GAH", "po@kdak.com", 16)
+                () ->new Student("UTS001", "Bob", "GAH", "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("Student ID must match pattern STU### (e.g., STU001)", exception.getMessage());
@@ -73,13 +67,11 @@ public class StudentTest {
     void shouldRejectWrongSizeStudentId() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU1111", "Bob", "GAH", "po@kdak.com", 16)
+                () -> new Student("STU1111", "Bob", "GAH", "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("Student ID must match pattern STU### (e.g., STU001)", exception.getMessage());
@@ -89,13 +81,12 @@ public class StudentTest {
     void shouldRejectStudentIdWithoutRightNumbers() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
+
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU21A", "Bob", "GAH", "po@kdak.com", 16)
+                () -> new Student("STU21A", "Bob", "GAH", "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("Student ID must match pattern STU### (e.g., STU001)", exception.getMessage());
@@ -105,13 +96,11 @@ public class StudentTest {
     void shouldRejectNullFirstName() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", null, "GAH", "po@kdak.com", 16)
+                () -> new Student("STU001", null, "GAH", "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("First name cannot be null or empty", exception.getMessage());
@@ -121,13 +110,12 @@ public class StudentTest {
     void shouldRejectEmptyFirstName() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
+
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", " ", "GAH", "po@kdak.com", 16)
+                () -> new Student("STU001", " ", "GAH", "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("First name cannot be null or empty", exception.getMessage());
@@ -137,13 +125,11 @@ public class StudentTest {
     void shouldRejectShortFirstName() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", "Z", "GAH", "po@kdak.com", 16)
+                () -> new Student("STU001", "Z", "GAH", "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("First name must be at least 2 characters long", exception.getMessage());
@@ -153,13 +139,12 @@ public class StudentTest {
     void shouldRejectNullLastName() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
+
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", "Bob", null, "po@kdak.com", 16)
+                () -> new Student("STU001", "Bob", null, "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("Last name cannot be null or empty", exception.getMessage());
@@ -169,13 +154,11 @@ public class StudentTest {
     void shouldRejectEmptyLastName() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", "Bob", " ", "po@kdak.com", 16)
+                () -> new Student("STU001", "Bob", " ", "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("Last name cannot be null or empty", exception.getMessage());
@@ -185,13 +168,11 @@ public class StudentTest {
     void shouldRejectShortLastName() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", "Bob", "Z", "po@kdak.com", 16)
+                () -> new Student("STU001", "Bob", "Z", "po@kdak.com", 16)
                 // <- lambda function
         );
         assertEquals("Last name must be at least 2 characters long", exception.getMessage());
@@ -201,13 +182,11 @@ public class StudentTest {
     void shouldRejectNullEmail() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", "Bob", "GAAAH", null, 16)
+                () -> new Student("STU001", "Bob", "GAAAH", null, 16)
                 // <- lambda function
         );
         assertEquals("Invalid email format", exception.getMessage());
@@ -217,13 +196,11 @@ public class StudentTest {
     void shouldRejectEmailWithoutAt() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", "Bob", "GAAAH", "podak.com", 16)
+                () -> new Student("STU001", "Bob", "GAAAH", "podak.com", 16)
                 // <- lambda function
         );
         assertEquals("Invalid email format", exception.getMessage());
@@ -234,13 +211,11 @@ public class StudentTest {
     void shouldRejectEmailWithoutDot() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", "Bob", "GAAAH", "po@dakcom", 16)
+                () -> new Student("STU001", "Bob", "GAAAH", "po@dakcom", 16)
                 // <- lambda function
         );
         assertEquals("Invalid email format", exception.getMessage());
@@ -250,13 +225,12 @@ public class StudentTest {
     void shouldRejectEmailWithDotBeforeAt() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
+
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", "Bob", "GAAAH", "po.ddak@com", 16)
+                () -> new Student("STU001", "Bob", "GAAAH", "po.ddak@com", 16)
                 // <- lambda function
         );
         assertEquals("Invalid email format", exception.getMessage());
@@ -266,13 +240,11 @@ public class StudentTest {
     void shouldRejectYoungAge() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", "Bob", "GAAAH", "po@dak.com", 15)
+                () -> new Student("STU001", "Bob", "GAAAH", "po@dak.com", 15)
                 // <- lambda function
         );
         assertEquals("Age must be between 16 and 65", exception.getMessage());
@@ -282,13 +254,11 @@ public class StudentTest {
     void shouldRejectOldAge() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final Student[] newStrudent = new Student[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newStrudent[0] = new Student("STU001", "Bob", "GAAAH", "po@dak.com", 75)
+                () -> new Student("STU001", "Bob", "GAAAH", "po@dak.com", 75)
                 // <- lambda function
         );
         assertEquals("Age must be between 16 and 65", exception.getMessage());

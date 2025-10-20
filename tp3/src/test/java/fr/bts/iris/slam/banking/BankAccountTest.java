@@ -48,13 +48,12 @@ class BankAccountTest {
     void shouldRejectNullAccountNumber() {
         // Vérifier qu'une IllegalArgumentException est levée
         // avec un message approprié
-        // ARRANGE - Préparer les données
-        final BankAccount[] newAccount = new BankAccount[1];
+
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newAccount[0] = new BankAccount(null, "Bob Martin", 50.0)
+                () -> new BankAccount(null, "Bob Martin", 50.0)
                 // <- lambda function
         );
         assertEquals("Account number cannot be null or empty", exception.getMessage());
@@ -63,13 +62,11 @@ class BankAccountTest {
     @Test
     void shouldRejectEmptyAccountNumber() {
         // Tester avec une chaîne vide ""
-        // ARRANGE - Préparer les données
-        final BankAccount[] newAccount = new BankAccount[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newAccount[0] = new BankAccount("", "Bob Martin", 50.0)
+                () -> new BankAccount("", "Bob Martin", 50.0)
                 // <- lambda function
         );
         assertEquals("Account number cannot be null or empty", exception.getMessage());
@@ -77,13 +74,11 @@ class BankAccountTest {
     
     @Test
     void shouldRejectNullHolderName() {
-        // ARRANGE - Préparer les données
-        final BankAccount[] newAccount = new BankAccount[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newAccount[0] = new BankAccount("ACC002", null, 50.0)
+                () -> new BankAccount("ACC002", null, 50.0)
                 // <- lambda function
         );
         assertEquals("Holder name cannot be null or empty", exception.getMessage());
@@ -91,13 +86,11 @@ class BankAccountTest {
     
     @Test
     void shouldRejectEmptyHolderName() {
-// ARRANGE - Préparer les données
-        final BankAccount[] newAccount = new BankAccount[1];
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newAccount[0] = new BankAccount("ACC002", "", 50.0)
+                () -> new BankAccount("ACC002", "", 50.0)
                 // <- lambda function
         );
         assertEquals("Holder name cannot be null or empty", exception.getMessage());
@@ -105,14 +98,12 @@ class BankAccountTest {
     
     @Test
     void shouldRejectNegativeInitialBalance() {
-        // Tester avec -10.0 par exemple
-        // ARRANGE - Préparer les données
-        final BankAccount[] newAccount = new BankAccount[1];
+        // Tester avec -50.0 par exemple
 
         // ACT & ASSERT : l'action et la vérification en une fois
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> newAccount[0] = new BankAccount("ACC002", "Bob Martin", -50.0)
+                () -> new BankAccount("ACC002", "Bob Martin", -50.0)
                 // <- lambda function
         );
         assertEquals("Initial balance cannot be negative", exception.getMessage());
@@ -159,7 +150,6 @@ class BankAccountTest {
     
     @Test
     void shouldRejectNegativeDeposit() {
-        // Le dépôt de -50.0 doit intercepter IllegalArgumentException
         // ARRANGE - Préparer les données
         double depositAmount = -42.0;
 
@@ -192,8 +182,6 @@ class BankAccountTest {
     
     @Test
     void shouldDecreaseBalanceOnValidWithdrawal() {
-        // Retirer 30.0 d'un compte avec 100.0
-        // Vérifier que le solde devient 70.0
         // ARRANGE
         double initialBalance = account.getBalance();
         double withdrawAmount = 50.0;
@@ -207,7 +195,6 @@ class BankAccountTest {
     
     @Test
     void shouldRejectWithdrawalExceedingBalance() {
-        // Tentative de retrait de 150.0 d'un compte avec 100.0
         // Doit intercepter IllegalArgumentException
         double withdrawAmount = 152.0;
 
@@ -298,7 +285,6 @@ class BankAccountTest {
     
     @Test
     void shouldRejectTransferWithInsufficientFunds() {
-        // Tentative de transfert de 150.0 d'un compte avec 100.0
         // ARRANGE
         BankAccount targetAccount = new BankAccount("ACC002", "Bob Martin", 0.0);
         double transferAmount = 158.0;
@@ -404,7 +390,6 @@ class BankAccountTest {
     
     @Test
     void shouldRejectNegativeOverdraftLimit() {
-        // Tentative de définir une limite de -50.0*
         double overdraftAmount = -20.0;
 
 
@@ -438,7 +423,7 @@ class BankAccountTest {
     
     @Test
     void shouldReturnFalseWhenCannotWithdraw() {
-        // Vérifier que canWithdraw(150.0) retourne false pour un compte avec 100.0 sans découvert
+        // Vérifier que canWithdraw(950.0) retourne false pour un compte avec 100.0 sans découvert
         assertFalse(account.canWithdraw(950.0));
 
     }

@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MavenTest {
 
-    Calculator calculator;
-
     @BeforeEach
     public void setUp() {
         this.calculator = new Calculator();

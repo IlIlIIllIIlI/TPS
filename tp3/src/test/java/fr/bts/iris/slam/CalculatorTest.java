@@ -44,7 +44,6 @@ class CalculatorTest {
     @Test
     public void shouldAddNegativeNumbers() {
         // Tester l'addition avec des nombres négatifs
-        // Exemple : (-5) + (-3) = -8
 
         // ARRANGE - Préparer les données
         int a = -10;
@@ -61,7 +60,6 @@ class CalculatorTest {
     @Test
     public void shouldAddZero() {
         // Tester l'addition avec zéro
-        // Exemple : 5 + 0 = 5
         // ARRANGE - Préparer les données
         int a = 7;
         int b = 0;
@@ -77,7 +75,6 @@ class CalculatorTest {
     
     @Test
     public void shouldSubtractNumbers() {
-        // Exemple : 10 - 3 = 7
         // ARRANGE - Préparer les données
         int a = 6;
         int b = 4;
@@ -91,7 +88,6 @@ class CalculatorTest {
     
     @Test
     public void shouldSubtractResultingInNegative() {
-        // Exemple : 3 - 10 = -7
         // ARRANGE - Préparer les données
         int a = 4;
         int b = 6;
@@ -107,7 +103,6 @@ class CalculatorTest {
     
     @Test
     public void shouldMultiplyNumbers() {
-        // Exemple : 4 * 3 = 12
         // ARRANGE - Préparer les données
         int a = 7;
         int b = 5;
@@ -135,7 +130,6 @@ class CalculatorTest {
     
     @Test
     public void shouldMultiplyNegativeNumbers() {
-        // Exemple : (-2) * (-3) = 6
         // ARRANGE - Préparer les données
         int a = -8;
         int b = -10;
@@ -151,10 +145,9 @@ class CalculatorTest {
     
     @Test
     public void shouldDivideNumbers() {
-        // Exemple : 15.0 / 3.0 = 5.0
         // ARRANGE - Préparer les données
-        double a = 8;
-        double b = 2;
+        double a = 8.0;
+        double b = 2.0;
 
         // ACT - Exécuter l'action à tester
         double result = this.calculator.divide(a, b);
@@ -168,8 +161,8 @@ class CalculatorTest {
         // La division par zéro doit lever une ArithmeticException.
         // Pour pouvoir tester des exceptions, il faut les catch !
         // ARRANGE - Préparer les données
-        double a = 4;
-        double b = 0;
+        double a = 4.0;
+        double b = 0.0;
 
         // ACT & ASSERT : l'action et la vérification en une fois
         ArithmeticException exception = assertThrows(
@@ -183,7 +176,6 @@ class CalculatorTest {
     
     @Test
     public void shouldCalculateFactorialOfPositiveNumber() {
-        // Exemple : 5! = 120
         // ARRANGE - Préparer les données
         int n = 9;
 
@@ -275,9 +267,7 @@ class CalculatorTest {
     
     @Test
     public void shouldCalculatePowerCorrectly() {
-        // Exemple : 2^3 = 8.0
         // Attention à la précision (par exemple 0.001) des doubles !
-        // assertEquals(8.0, calculator.power(2, 3), 0.001);
         // ARRANGE - Préparer les données
         double base = 8;
         int exponent = 2;
@@ -293,7 +283,7 @@ class CalculatorTest {
     public void shouldReturnOneForPowerZero() {
         // Tout nombre puissance 0 = 1
         // ARRANGE - Préparer les données
-        double base = 8;
+        double base = 8.0;
         int exponent = 0;
 
         // ACT - Exécuter l'action à tester
@@ -307,7 +297,7 @@ class CalculatorTest {
     public void shouldThrowExceptionForNegativeExponent() {
         // Exposant négatif doit lever IllegalArgumentException
         // ARRANGE - Préparer les données
-        double n = 4;
+        double n = 4.0;
         int exponent =-7;
 
 
@@ -324,10 +314,9 @@ class CalculatorTest {
 
     @Test
     public void shouldDivideFractalNumbers() {
-        // Exemple : 15.0 / 3.0 = 5.0
         // ARRANGE - Préparer les données
-        double a = this.calculator.divide(7, 3);
-        double b = 2;
+        double a = this.calculator.divide(7.0, 3.0);
+        double b = 2.0;
 
         // ACT - Exécuter l'action à tester
         double result = this.calculator.divide(a, b);
@@ -338,10 +327,9 @@ class CalculatorTest {
 
     @Test
     public void shouldReturnOneForDivideWithZero() {
-        // Cas spécial : 1! = 1
         // ARRANGE - Préparer les données
-        double a = 0;
-        double b = 8;
+        double a = 0.0;
+        double b = 8.0;
 
         // ACT - Exécuter l'action à tester
         double result = this.calculator.divide(a, b);

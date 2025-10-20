@@ -73,7 +73,7 @@ public class Student {
         if (this.grades.isEmpty()) {
             throw new IllegalStateException("Cannot calculate average: no grades available");
         }
-        double avg = 0;
+        double avg = 0.0;
 
         for (double grade : this.grades) {
             avg+=grade;
@@ -83,7 +83,7 @@ public class Student {
     }
 
     public boolean hasPassingGrade(){
-        return !this.grades.isEmpty()&&this.getAverageGrade()>=10;
+        return !this.grades.isEmpty() && this.getAverageGrade()>=10;
     }
 
     public String getFullName(){
