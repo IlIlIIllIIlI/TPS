@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{SESSION_NAME}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            overflow: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .session-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .slide-counter {
+            font-size: 1rem;
+            color: #888;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            position: absolute;
+            width: 90%;
+            height: 80%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .slide h2 {
+            position: relative;
+            z-index: 2;
+            font-size: 3rem;
+            text-align: center;
+            padding: 40px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            font-weight: 700;
+        }
+
+        .nav-button {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-button:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        #prev-btn {
+            left: 30px;
+        }
+
+        #next-btn {
+            right: 30px;
+        }
+
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-button:disabled:hover {
+            transform: translateY(-50%) scale(1);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .slide h2 {
+                font-size: 2rem;
+            }
+
+            .nav-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="session-name">{{SESSION_NAME}}</div>
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">0</span>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide-container">
+        {{SLIDES_CONTENT}}
+    </div>
+
+    <button class="nav-button" id="prev-btn" onclick="previousSlide()">‹</button>
+    <button class="nav-button" id="next-btn" onclick="nextSlide()">›</button>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(index) {
+            // Masquer toutes les slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Afficher la slide courante
+            if (slides[index]) {
+                slides[index].classList.add('active');
+                currentSlide = index;
+                document.getElementById('current-slide').textContent = index + 1;
+                
+                // Gérer les boutons
+                document.getElementById('prev-btn').disabled = index === 0;
+                document.getElementById('next-btn').disabled = index === totalSlides - 1;
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Navigation au clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Afficher la première slide au chargement
+        if (totalSlides > 0) {
+            showSlide(0);
+        }
+    </script>
+</body>
+</html>
