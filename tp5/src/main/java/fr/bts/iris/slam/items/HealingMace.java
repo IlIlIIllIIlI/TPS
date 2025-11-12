@@ -22,24 +22,27 @@ public class HealingMace extends Item implements Healing, Damaging {
         this.damage = damage;
         this.healing = heal;
     }
+    @Override
 
     public void heal(Target target){
         this.healing.heal(target,this.getEnchantments());
     }
+    @Override
 
     public int getDamage() {
         return this.damage.getDamage(this.getEnchantments());
     }
+    @Override
 
     public void attack(Target target){
         damage.attack(target,this.getEnchantments());
     }
+    @Override
 
     public int getHealPower(){
         return this.healing.getHealPower(this.getEnchantments());
     }
 
-    @Override
     public String getName() {
         return super.getName();
     }

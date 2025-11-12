@@ -13,11 +13,11 @@ public class BasicHealingStrategy implements EnchantableHealing {
 
         this.healing = healing;
     }
-
+    @Override
     public void heal(Target target){
         target.heal(this.healing);
     }
-
+    @Override
     public int getHealPower() {
         return this.healing;
     }

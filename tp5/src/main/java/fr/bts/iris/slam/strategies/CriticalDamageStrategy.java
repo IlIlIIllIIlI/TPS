@@ -21,7 +21,7 @@ public class CriticalDamageStrategy implements EnchantableDamaging {
         this.damage=damage;
         this.critChance = critChance;
     }
-
+    @Override
     public void attack(Target target){
         Random rand = new Random();
         double n = rand.nextDouble(1);
@@ -31,7 +31,7 @@ public class CriticalDamageStrategy implements EnchantableDamaging {
             target.takeDamage(this.damage*2);
         }
     }
-
+    @Override
     public int getDamage() {
         return this.damage;
     }

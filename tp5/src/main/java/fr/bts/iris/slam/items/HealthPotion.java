@@ -12,14 +12,14 @@ public class HealthPotion extends Item implements Healing {
         this.healingSystem = new HealingSystem(healing);
 
     }
-
+    @Override
     public void heal(Target target){
          this.healingSystem.heal(target);
     }
+    @Override
     public int getHealPower(){
         return this.healingSystem.getHealing();
     }
-    @Override
     public String getName() {
         return super.getName();
     }

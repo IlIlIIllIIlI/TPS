@@ -4,6 +4,8 @@
 .idea/usage.statistics.xml
 .idea/dictionaries
 .idea/shelf/
+
+.idea/
 # IntelliJ IDEA - Modules et config projet (INCLUS pour compatibilité prof)
 # .idea/ (dossier principal gardé)
 # *.iml (fichiers modules gardés)

@@ -34,5 +34,7 @@ public class Main {
         sword.attack(target);
 
         System.out.println(target.getCurrentHealth());
+
+        System.out.println(sword.getName());
     }
 }

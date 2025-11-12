@@ -19,13 +19,13 @@ public class StunDamageStrategy implements EnchantableDamaging {
         this.damage=damage;
         this.stunDuration = stunDuration;
     }
-
+    @Override
     public void attack(Target target){
         target.takeDamage(this.damage);
         target.applyStun(stunDuration);
 
     }
-
+    @Override
     public int getDamage() {
         return this.damage;
     }

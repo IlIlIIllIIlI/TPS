@@ -15,16 +15,15 @@ public class StunningMace extends Item implements Damaging {
         }
         this.damage = damage;
     }
-
+    @Override
     public int getDamage() {
         return this.damage.getDamage(this.getEnchantments());
     }
-
+    @Override
     public void attack(Target target){
         this.damage.attack(target,this.getEnchantments());
     }
 
-    @Override
     public String getName() {
         return super.getName();
     }

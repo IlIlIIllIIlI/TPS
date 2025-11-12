@@ -15,8 +15,8 @@ public abstract class Item {
     }
 
     public void setEnchantments(Enchantable first){
-        if (enchantmentChain == null) {
-            enchantmentChain = first;
+        if (this.enchantmentChain == null) {
+            this.enchantmentChain = first;
         } else {
             this.enchantmentChain.setNext(first);
 
@@ -28,6 +28,6 @@ public abstract class Item {
     }
 
     public String getName() {
-        return name;
+        return this.enchantmentChain.modifyName(this.name);
     }
 }

@@ -53,4 +53,6 @@ public class Target {
     public double getStunDuration() {
         return stunDuration;
     }
+
+
 }

@@ -14,11 +14,11 @@ public class MagicDamageStrategy implements EnchantableDamaging {
 
         this.damage=damage;
     }
-
+    @Override
     public void attack(Target target){
         target.takeDamage(this.damage);
     }
-
+    @Override
     public int getDamage() {
         return this.damage;
     }

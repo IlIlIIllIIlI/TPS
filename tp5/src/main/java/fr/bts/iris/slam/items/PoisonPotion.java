@@ -11,16 +11,15 @@ public class PoisonPotion extends Item implements Damaging {
         super(name);
         this.damageSystem = new DamageSystem(damage);
     }
-
+    @Override
     public int getDamage() {
         return this.damageSystem.getDamage();
     }
-
+    @Override
     public void attack(Target target){
-         damageSystem.hit(target);
+         this.damageSystem.hit(target);
     }
 
-    @Override
     public String getName() {
         return super.getName();
     }
