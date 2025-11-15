@@ -43,9 +43,5 @@ public class HealingMace extends Item implements Healing, Damaging {
         return this.healing.getHealPower(this.getEnchantments());
     }
 
-    public String getName() {
-        return super.getName();
-    }
-
 
 }

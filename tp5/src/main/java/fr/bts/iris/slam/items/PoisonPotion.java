@@ -20,7 +20,4 @@ public class PoisonPotion extends Item implements Damaging {
          this.damageSystem.hit(target);
     }
 
-    public String getName() {
-        return super.getName();
-    }
 }

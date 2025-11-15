@@ -41,9 +41,5 @@ public class DruidStaff extends Item implements Damaging,Healing {
         return this.healing.getHealPower(this.getEnchantments());
     }
 
-    public String getName() {
-        return super.getName();
-    }
-
 
 }

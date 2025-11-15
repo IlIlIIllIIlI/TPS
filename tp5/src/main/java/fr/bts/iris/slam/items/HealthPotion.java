@@ -20,7 +20,4 @@ public class HealthPotion extends Item implements Healing {
     public int getHealPower(){
         return this.healingSystem.getHealing();
     }
-    public String getName() {
-        return super.getName();
-    }
 }

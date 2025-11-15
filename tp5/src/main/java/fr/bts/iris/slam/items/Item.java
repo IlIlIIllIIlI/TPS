@@ -24,7 +24,7 @@ public abstract class Item {
     }
 
     public Enchantable getEnchantments() {
-        return enchantmentChain;
+        return this.enchantmentChain;
     }
 
     public String getName() {

@@ -25,8 +25,5 @@ public class Dagger extends Item implements Damaging {
         this.damage.attack(target,this.getEnchantments());
     }
 
-    public String getName() {
-        return super.getName();
-    }
 
 }
