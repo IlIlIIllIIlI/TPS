@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fr.bts.iris.slam.controller.RevisionController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox spacing="5">
+        <Label fx:id="deckTitleLabel" text="Nom du Deck">
+        </Label>
+        <Label fx:id="progressLabel" text="Carte 1/10" >
+        </Label>
+    </VBox>
+
+    <VBox prefHeight="300.0" prefWidth="500.0" spacing="15.0">
+
+        <Label text="Question : ">
+        </Label>
+        <Label fx:id="questionLabel" text="question" wrapText="true">
+        </Label>
+
+        <VBox fx:id="answerBox" spacing="10" visible="false" managed="${answerBox.visible}">
+            <Label text="Réponse :">
+            </Label>
+            <Label fx:id="answerLabel" text="réponse" textAlignment="CENTER" wrapText="true">
+            </Label>
+        </VBox>
+    </VBox>
+
+    <VBox spacing="15.0">
+
+        <Button fx:id="showAnswerButton" onAction="#handleShowAnswer" text="Afficher la réponse">
+        </Button>
+
+        <HBox fx:id="difficultyBox" disable="true" spacing="15.0">
+            <Button onAction="#handleHard" text="Difficile" />
+            <Button onAction="#handleMedium" text="Moyen" />
+            <Button onAction="#handleEasy" text="Facile" />
+        </HBox>
+    </VBox>
+
+</AnchorPane>

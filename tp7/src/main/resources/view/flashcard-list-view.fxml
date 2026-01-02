@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fr.bts.iris.slam.controller.FlashCardListController"
+            prefWidth="800" prefHeight="600">
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10;">
+            <Button fx:id="newButton" text="Nouvelle carte" onAction="#handleNew"/>
+            <Button fx:id="editButton" text="Modifier" onAction="#handleEdit"/>
+            <Button fx:id="deleteButton" text="Supprimer" onAction="#handleDelete"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="flashcardsTable">
+            <columns>
+                <TableColumn fx:id="questionColumn" text="Question" prefWidth="320"/>
+                <TableColumn fx:id="answerColumn" text="Réponse" prefWidth="280"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>

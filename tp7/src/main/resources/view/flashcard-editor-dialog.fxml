@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fr.bts.iris.slam.controller.FlashCardEditorController"
+            prefWidth="800" prefHeight="600">
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <TextField fx:id="questionField" promptText="Question"/>
+                <TextArea fx:id="answerArea" promptText="Answer"/>
+                <Button fx:id="saveButton" text="Enregistrer" onAction="#handleConfirm"/>
+                <Button fx:id="cancelButton" text="Annuler" onAction="#handleCancel"/>
+            </VBox>
+
+</AnchorPane>
